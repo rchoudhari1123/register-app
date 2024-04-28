@@ -97,7 +97,7 @@ stage ('Cleanup Artifacts') {
        stage("Trigger CD Pipeline") {
             steps {
                 script {
-                    sh "curl -v -k --user Jenkins_server:${JENKINS_API_TOKEN} -X POST -H 'cache-control: no-cache' -H 'content-type: application/x-www-form-urlencoded' --data 'IMAGE_TAG=${IMAGE_TAG}' 'ec2-13-127-128-248.ap-south-1.compute.amazonaws.com:8080/job/gitops-register-app-cd/buildWithParameters?token=new'"
+                    sh "curl -v -k --user Jenkins_server:${JENKINS_API_TOKEN} -X POST -H 'cache-control: no-cache' -H 'content-type: application/x-www-form-urlencoded' --data 'IMAGE_TAG=${IMAGE_TAG}' 'ec2-13-127-128-248.ap-south-1.compute.amazonaws.com:8080/job/cd-job/buildWithParameters?token=new'"
                 }
             }
        }
