@@ -89,7 +89,12 @@ stage ('Cleanup Artifacts') {
                }
           }
        }
+stage ('triggerchildjob') {
+    steps {
+         build job: "cd-job", wait: true
+}
 
+}
        stage("Trigger CD Pipeline") {
             steps {
                 script {
