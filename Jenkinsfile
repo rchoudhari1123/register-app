@@ -123,6 +123,7 @@ stage("Update the Deployment Tags") {
                        subject: "Pipeline Build is over .. Build # is ..${env.BUILD_NUMBER} and Build status is.. ${currentBuild.result}.",
 	                   body: "Pipeline Build is over .. Build # is ..${env.BUILD_NUMBER} and Build status is.. ${currentBuild.result}.",
 	                   replyTo: 'rahulchaudhary1804@gmail.com'
+		           recipients: 'rahulchaudhary1804@gmail.com'
 			         
             cleanWs()
         }
@@ -131,6 +132,7 @@ stage("Update the Deployment Tags") {
                      subject: "Pipeline Build is over .. Build # is ..${env.BUILD_NUMBER} and Build status is.. ${currentBuild.result}.",
 	                 body: "Pipeline Build is over .. Build # is ..${env.BUILD_NUMBER} and Build status is.. ${currentBuild.result}.",
 	                 replyTo: 'rahulchaudhary1804@gmail.com'
+		         recipients: 'rahulchaudhary1804@gmail.com'
 		 cleanWs()	 
         }
     }
