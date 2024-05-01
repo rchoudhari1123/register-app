@@ -89,19 +89,30 @@ stage ('Cleanup Artifacts') {
                }
           }
        }
-stage ('triggerchildjob') {
-    steps {
-         build job: "cd-job", wait: true
-}
-
-}
-       stage("Trigger CD Pipeline") {
+stage("Update the Deployment Tags") {
             steps {
-                script {
-                    sh "curl -v -k --user Jenkins_server:${JENKINS_API_TOKEN} -X POST -H 'cache-control: no-cache' -H 'content-type: application/x-www-form-urlencoded' --data 'IMAGE_TAG=${IMAGE_TAG}' 'ec2-35-154-130-134.ap-south-1.compute.amazonaws.com:8080/job/cd-job/buildWithParameters?token=gitops-token'"
+                sh """
+                   cat deployment.yaml
+                   sed -i 's/${APP_NAME}.*/${APP_NAME}:${IMAGE_TAG}/g' deployment.yaml
+                   cat deployment.yaml
+                """
+            }
+        }
+
+        stage("Push the changed deployment file to Git") {
+            steps {
+                sh """
+                   git config --global user.name "rchoudhari1123"
+                   git config --global user.email "rahulchoudhari1123@gmail.com"
+                   git add deployment.yaml
+                   git commit -m "Updated Deployment Manifest"
+                """
+                withCredentials([gitUsernamePassword(credentialsId: 'git-cred', gitToolName: 'Default')]) {
+                  sh "git push https://github.com/rchoudhari1123/register-app main"
                 }
             }
-       }
+        }
+      
     }
 
 
