@@ -117,7 +117,7 @@ stage("Update the Deployment Tags") {
 post 
 	{
 success	{
-     emailext body: 'fromm jenkins', subject: 'build notifications', to: 'rahulchaudhary1804@gmail.com'  
+     emailext body: 'fromm jenkins', subject: 'build notifications', to: 'rahulchaudhary1804@gmail.com', replyTo: 'rahulchaudhary1804@gmail.com'  
    }
 }
 }
