@@ -18,15 +18,12 @@
 
 
 
-<profiles>
-    <profile>
+
         <modules>
              <module>server</module>
              <module>webapp</module>          
         </modules>
-</profile>
-         
-</profiles>
+
 
   <distributionManagement>
     <site>
