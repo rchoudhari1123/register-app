@@ -119,22 +119,30 @@ stage("Update the Deployment Tags") {
             cleanWs()
         }
         success {   
-              emailext to: 'rahulchaudhary1804@gmail.com',
-                       subject: "Pipeline Build is over .. Build # is ..${env.BUILD_NUMBER} and Build status is.. ${currentBuild.result}.",
-	                   body: "Pipeline Build is over .. Build # is ..${env.BUILD_NUMBER} and Build status is.. ${currentBuild.result}.",
-	                   replyTo: 'rahulchaudhary1804@gmail.com'
-		           recipients: 'rahulchaudhary1804@gmail.com'
+              emailext (
+      to: "${rahulchaudhary1804@gmail.com}",
+      subject: subject,
+      body: details,
+      replyTo: '$DEFAULT_REPLYTO',
+      charset: 'UTF8',
+      from: 'niaep_jenkins@niaep.ru',
+      mimeType: 'text/html',
+      recipientProviders: [[$class: 'DevelopersRecipientProvider']]
 			         
             cleanWs()
         }
-        failure {
-            emailext to: 'rahulchaudhary1804@gmail.com',
-                     subject: "Pipeline Build is over .. Build # is ..${env.BUILD_NUMBER} and Build status is.. ${currentBuild.result}.",
-	                 body: "Pipeline Build is over .. Build # is ..${env.BUILD_NUMBER} and Build status is.. ${currentBuild.result}.",
-	                 replyTo: 'rahulchaudhary1804@gmail.com'
-		         recipients: 'rahulchaudhary1804@gmail.com'
+        emailext (
+      to: "${rahulchaudhary1804@gmail.com}",
+      subject: subject,
+      body: details,
+      replyTo: '$DEFAULT_REPLYTO',
+      charset: 'UTF8',
+      from: 'niaep_jenkins@niaep.ru',
+      mimeType: 'text/html',
+      recipientProviders: [[$class: 'DevelopersRecipientProvider']]
 		 cleanWs()	 
         }
     }
 
 }
+		}
