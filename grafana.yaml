@@ -11,7 +11,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   sources:
-  - repoURL:  https://github.com/<git-username>/<git-repo>.git
+  - repoURL:  https://github.com/rchoudhari1123/register-app.git
     targetRevision: HEAD
     ref: <customizable reference>
   - repoURL: https://grafana.github.io/helm-charts
