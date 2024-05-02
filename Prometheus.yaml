@@ -3,29 +3,12 @@ kind: Application
 metadata:
   name: prometheus
   namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
 spec:
-  destination:
-    namespace: argocd
-    server: https://kubernetes.default.svc
   project: default
-  sources:
-    - repoURL: https://github.com/rchoudhari1123/register-app.git
-      targetRevision: HEAD
-      ref: <customizable reference>
-    - repoURL: https://prometheus-community.github.io/helm-charts/
-      chart: prometheus
-      targetRevision: 19.7.2
-      helm:
-        values: |
-            server:
-              service:
-                type: LoadBalancer
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
-  
+  source:
+    repoURL: https://prometheus-community.github.io/helm-charts
+    targetRevision: 13.7.2
+    chart: kube-prometheus-stack
+destination:
+  server: https://kubernetes.default.svc
+  namespace: prometheus
