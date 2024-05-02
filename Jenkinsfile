@@ -114,26 +114,7 @@ stage("Update the Deployment Tags") {
         }
       
     }
-post {
-        always {
-            cleanWs()
-        }
-        success {   
-              emailext to: 'rahulchaudhary1804@gmail.com',
-                       subject: "Pipeline Build is over .. Build # is ..${env.BUILD_NUMBER} and Build status is.. ${currentBuild.result}.",
-	                   body: "Pipeline Build is over .. Build # is ..${env.BUILD_NUMBER} and Build status is.. ${currentBuild.result}.",
-	                   replyTo: 'rahulchaudhary1804@gmail.com'
-			         
-            cleanWs()
-        }
-        failure {
-            emailext to: 'rahulchaudhary1804@gmail.com',
-                     subject: "Pipeline Build is over .. Build # is ..${env.BUILD_NUMBER} and Build status is.. ${currentBuild.result}.",
-	                 body: "Pipeline Build is over .. Build # is ..${env.BUILD_NUMBER} and Build status is.. ${currentBuild.result}.",
-	                 replyTo: 'rahulchaudhary1804@gmail.com'
-		 cleanWs()	 
-        }
-    }
+
 
 
 }
